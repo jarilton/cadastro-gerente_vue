@@ -31,7 +31,13 @@ export default {
       this.$http.post('auth/login', this.usuario)
         .then(resposta => {
             console.log(resposta)
-            localStorage.setItem('token', resposta.token.acess.token);
+            //localStorage.setItem('token', resposta.token.acess_token);
+            //this.$store.state.token = resposta.token.acess_token
+            //this.$store.state.usuario = resposta.token.acess_user
+            this.$store.commit('DEFINIR_USUARIO_LOGADO', {
+              token: resposta.token.acess_token,
+              usuario: resposta.token.acess_user
+            })
             this.$router.push({ name: "gerentes"})
           })
         .catch(erro => console.log(erro))
