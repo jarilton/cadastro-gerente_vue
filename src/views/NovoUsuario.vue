@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="container">
     <h1>Novo usuário</h1>
     <form @submit.prevent="enviarFormulario">
@@ -18,27 +18,28 @@
     </form>
   </div>
 </template>
- 
- <script>
-import axios from "axios";
 
+<script>
 export default {
-  data: function() {
+  data: function () {
     return {
       usuario: {
         nome: "",
         senha: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
   methods: {
     enviarFormulario() {
-      axios
-        .post("http://localhost:8000/auth/register", this.usuario)
-        .then(resposta => console.log(resposta))
-        .catch(erro => console.log(erro))
-    }
-  }
+      this.$http
+        .post("auth/register", this.usuario)
+        .then((resposta) => {
+          console.log(resposta);
+          this.$router.push({ name: "login" });
+        })
+        .catch((erro) => console.log(erro));
+    },
+  },
 };
 </script>
