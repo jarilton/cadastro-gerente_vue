@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
   name: "Login",
@@ -29,7 +28,7 @@ export default {
   },
   methods: {
     efetuarLogin() { 
-      axios.post('http://localhost:8000/auth/login', this.usuario)
+      this.$http.post('auth/login', this.usuario)
         .then(resposta => {
             console.log(resposta)
             localStorage.setItem('token', resposta.token.acess.token);
