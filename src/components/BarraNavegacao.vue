@@ -26,7 +26,7 @@ export default {
     name: "BarraNavegacao",
     computed: {
         estaLogado() {
-            return Boolean(localStorage.getItem("token"));
+            return Boolean(this.$store.state.token);
         },
     },
     components: { BarraNavegacaoLogado, BarraNavegacaoDeslogado }

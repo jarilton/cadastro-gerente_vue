@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { config } from 'vue'
+import config from 'vue'
+import provedor from '@/provedor'
 
 const http = axios.create({
       baseURL: 'http://localhost:8080/',
@@ -10,7 +11,7 @@ const http = axios.create({
 })
 
 http.interceptors.request.use(function () {
-      const token = localStorage.getItem('token')
+      const token = provedor.state.token
       if (token) {
             config.headers.Authorization = `Bearer ${token}`
       }
