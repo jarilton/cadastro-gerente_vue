@@ -31,6 +31,17 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    this.$http.get('gerentes')
+      .then(reponse => this.gerentes = reponse.data)
+      .catch(err => console.log(err))
+  },
+  beforeRouteEnter (to, from, next) {
+    if(!this.$store.state.token) {
+      next({ name: 'login' })
+    }
+    next()
   }
 }
 </script>
